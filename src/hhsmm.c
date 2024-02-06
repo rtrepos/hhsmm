@@ -60,6 +60,10 @@ void free_matrix(int nrow,int ncol,void **x) {
 
 void forward(double *a,double *start,double *p0,double *d,double *D,int *timelength,int *nstates,int *M,
 	     double **F0,double *N0,double **si0,int *nsequences,int *totallength,double *semi) {
+  
+  
+  
+  
   double obs;
   int u,i,j,t,n;
   int T;
@@ -74,6 +78,8 @@ void forward(double *a,double *start,double *p0,double *d,double *D,int *timelen
   F = (double **)calloc(J,sizeof(double *));
   si = (double **)calloc(J,sizeof(double *));
 
+  
+  printf("coucou forward");
 /*
     printf("J = %d     T = %d\n",J,T);
     print_matrix(J,J,a);
@@ -198,6 +204,10 @@ void forward_backward(double *a,double *start,double *p0,double *d,double *D,int
   den  = (double *)calloc(J,sizeof(double));
   num  = (double **)alloc_matrix(J,J,sizeof(double));
 
+  
+  printf("coucou \n ");
+  fflush(stdout);
+  
   forward(a,start,p0,d,D,timelength,nstates,M,F0,N0,si0,nsequences,totallength,semi);
   /*
     for(j=0;j<J;j++) memcpy(F1+j*T,F[j],T*sizeof(double));

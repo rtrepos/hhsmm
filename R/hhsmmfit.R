@@ -82,6 +82,8 @@ hhsmmfit <- function(x, model, mstep = NULL, ..., M = NA,
 	par = list(maxit = 100, lock.transition = FALSE, lock.d = FALSE, 
 	lock.init = FALSE, graphical = FALSE, verbose = TRUE)) 
 {
+  print("coucou hssmfit")
+  
 	defaultpar <- list(maxit = 100, lock.transition = FALSE, lock.d = FALSE, 
 	lock.init = FALSE, graphical = FALSE, verbose = TRUE)
 	par <-  modifyList(defaultpar, par)
@@ -111,7 +113,7 @@ hhsmmfit <- function(x, model, mstep = NULL, ..., M = NA,
   	ll = rep(NA,par$maxit)
   	rm(model)
   	for (it in 1:par$maxit) {
-  		if (par$verbose) cat('iteration: ',it,"  ")
+  		if (par$verbose) cat('ittteration: ',it,"  ")
     		if(par$graphical)   plot.hhsmm(list(model=new.model,J=J))
 		if(anyNA(x) | any(is.nan(x))){
 			p = .densComputeMiss(x, new.model, ...)
@@ -186,7 +188,7 @@ hhsmmfit <- function(x, model, mstep = NULL, ..., M = NA,
     }
     ll[it] = sum(log(unlist(estep_variables$N)))
     new.model$J = J
-	if (par$verbose) cat("log-likelihood = ",ll[it],"\n")
+	if (par$verbose) cat("\nllog-likelihood = ",ll[it],"\n")
     if(it>2) if(abs(ll[it] - ll[it - 1]) / abs(ll[it - 1]) < tol) break()
  } 
  if(all(!new.model$semi)){
